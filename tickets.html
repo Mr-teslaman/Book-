@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FASHION DESIGNER OF THE YEAR AWARD - KISUMU EDITION | Tikuza</title>
+
+  <!-- UI libs -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="icon" href="assets/images/Favicon.png" type="image/png"/>
+
+  <style>
+    :root{
+      --primary:#1c70b7;         /* Tikuza blue */
+      --primary-600: #175e98;
+      --primary-50: #eaf3fb;
+      --ink: #0f172a;
+      --muted: #657089;
+      --card: #ffffff;
+      --bg: #f4f7fb;
+      --radius:16px;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --soft:0 6px 18px rgba(0,0,0,.06);
+      --trans:.25s ease;
+    }
+
+    html,body{height:100%}
+    body{
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans";
+      background:
+        radial-gradient(900px 420px at 10% -10%, var(--primary-50), transparent 60%),
+        linear-gradient(180deg, #f8fafc, #eef2f7 60%, #eef2f7);
+      color:#364152;
+      line-height:1.6;
+    }
+
+    /* NAVBAR */
+    .navbar{
+      background: rgba(255,255,255,.9)!important;
+      backdrop-filter:saturate(150%) blur(10px);
+      box-shadow:0 6px 20px rgba(28,112,183,.08);
+    }
+    .navbar .nav-link{ font-weight:500; color:#374151; }
+    .navbar .nav-link:hover{ color:var(--primary); }
+    .btn-primary{ background:var(--primary); border-color:var(--primary); box-shadow:0 8px 20px rgba(28,112,183,.25); }
+    .btn-primary:hover{ background:var(--primary-600); border-color:var(--primary-600); }
+
+    /* HERO */
+    .hero{
+      position:relative; overflow:hidden; border-radius:24px; box-shadow:var(--shadow);
+      background:#e8eef7; height:460px;
+    }
+    .hero img{ width:100%; height:100%; object-fit:cover; }
+    .hero::after{
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(0deg, rgba(0,0,0,.65) 0%, rgba(0,0,0,.25) 55%, rgba(0,0,0,0) 100%);
+    }
+    .hero-caption{
+      position:absolute; inset:auto 0 0 0; padding:28px 28px 24px 28px; color:#fff; z-index:2;
+    }
+    .hero-title{
+      font-weight:800; letter-spacing:.2px; font-size:2.4rem; text-shadow:0 8px 30px rgba(0,0,0,.35);
+    }
+    .chips{ display:flex; flex-wrap:wrap; gap:10px; margin-top:12px; }
+    .chip{
+      display:inline-flex; gap:8px; align-items:center; padding:8px 12px;
+      background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.25);
+      color:#fff; border-radius:999px; font-weight:600; font-size:.95rem;
+      backdrop-filter: blur(4px);
+    }
+
+    /* LAYOUT */
+    .page{ max-width:1200px; margin:40px auto; padding:0 16px; }
+    .section{ margin-top:28px; }
+
+    /* LEFT: DETAILS / DESCRIPTION */
+    .card-surface{
+      background:var(--card); border-radius:var(--radius); box-shadow:var(--shadow);
+    }
+    .surface-pad{ padding:24px; }
+    .surface-title{
+      font-weight:800; color:var(--ink); letter-spacing:.2px; margin-bottom:12px;
+    }
+    .divider{ height:1px; background:#e5e7eb; margin:14px 0 20px; }
+
+    .info-grid{
+      display:grid; grid-template-columns:1fr 1fr; gap:14px;
+    }
+    .info-item{
+      display:flex; gap:12px; align-items:flex-start;
+      padding:14px 14px; border:1px dashed #e5ecf5; border-radius:14px; background:#fafcff;
+    }
+    .info-icon{
+      width:36px; height:36px; border-radius:10px; display:grid; place-items:center;
+      background:var(--primary-50); color:var(--primary);
+    }
+    .info-label{ font-size:.85rem; color:#6b7280; margin-bottom:2px; font-weight:600; text-transform:uppercase; letter-spacing:.5px;}
+    .info-value{ font-weight:700; color:#0f172a; }
+
+    .desc p{ margin-bottom:1rem; color:#485266; }
+    .desc strong{ color:#0f172a; }
+    .desc ul{ margin:0 0 1rem 1rem; }
+
+    /* RIGHT: STICKY BOOKING */
+    .book{
+      position:sticky; top:88px;
+      border-radius:20px; box-shadow:var(--shadow); background:#ffffff; overflow:hidden;
+    }
+    .book-head{
+      padding:18px 20px;
+      background:linear-gradient(135deg, var(--primary) 0%, var(--primary-600) 100%);
+      color:#fff; display:flex; justify-content:space-between; align-items:center;
+    }
+    .price{
+      font-weight:900; font-size:1.8rem; letter-spacing:.2px;
+      text-shadow:0 10px 22px rgba(0,0,0,.25);
+    }
+    .book-body{ padding:20px; }
+    .list-lite{
+      list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px;
+    }
+    .list-lite li{
+      display:flex; gap:10px; align-items:flex-start; padding:10px 12px;
+      border:1px solid #e9eef5; border-radius:12px; background:#fbfdff;
+    }
+    .list-lite i{ color:var(--primary); }
+    .cta{
+      display:block; width:100%;
+      padding:14px 0; font-weight:800; letter-spacing:.3px; border-radius:12px;
+      background:linear-gradient(135deg, var(--primary) 0%, var(--primary-600) 100%);
+      color:#fff; border:none; text-align:center; text-decoration:none;
+      box-shadow:0 10px 24px rgba(28,112,183,.35); transition:transform var(--trans), box-shadow var(--trans);
+    }
+    .cta:hover{ transform:translateY(-2px); color:#fff; box-shadow:0 14px 28px rgba(28,112,183,.45); }
+    .cta.disabled{ 
+      pointer-events:none; opacity:.65; filter:grayscale(15%);
+    }
+
+    /* CTA WIDE BANNER */
+    .cta-wide{
+      background:linear-gradient(135deg, var(--primary) 0%, #124a75 100%);
+      color:#fff; border-radius:24px; padding:28px 22px; box-shadow:var(--shadow);
+      display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+    }
+
+    /* BADGE */
+    .ended-badge {
+      position:absolute; right:16px; top:16px; z-index:2;
+    }
+
+    /* FOOTER */
+    footer{ background:#0f172a; margin-top:64px; }
+    footer p{ color:#cbd5e1; }
+
+    /* RESPONSIVE */
+    @media (max-width: 991.98px){
+      .info-grid{ grid-template-columns:1fr; }
+      .hero{ height:380px; }
+    }
+    @media (max-width: 575.98px){
+      .hero{ height:320px; border-radius:18px; }
+      .hero-title{ font-size:1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="https://tikuza.co.ke/">
+      <img src="assets/images/Logo.png" alt="Tikuza Logo" height="40"/>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item"><a class="nav-link" href="https://www.tikuza.co.ke/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="events">Browse Events</a></li>
+        <li class="nav-item"><a class="nav-link" href="sign-up">Create Event</a></li>
+        <li class="nav-item"><a class="nav-link" href="find-my-ticket">Find My Ticket</a></li>
+      </ul>
+      <div class="d-flex gap-2">
+        <a href="login" class="btn btn-outline-secondary">Login</a>
+        <a href="sign-up" class="btn btn-primary"><i class="fas fa-plus me-1"></i> Host Event</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE -->
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero mb-4 position-relative ">
+    
+    <img src="assets/posters/1763404406_WhatsApp_Image_2025-11-17_at_20.02.35_c9598506.jpg"
+         alt="FASHION DESIGNER OF THE YEAR AWARD - KISUMU EDITION">
+    <div class="hero-caption">
+      <h1 class="hero-title mb-2">FASHION DESIGNER OF THE YEAR AWARD - KISUMU EDITION</h1>
+      <div class="chips">
+        <span class="chip"><i class="fa-solid fa-calendar-days"></i> December 6, 2025</span>
+        <span class="chip"><i class="fa-solid fa-clock"></i> 5:00 PM</span>
+        <span class="chip"><i class="fa-solid fa-location-dot"></i> Mirage Hotel</span>
+      </div>
+    </div>
+  </section>
+
+  
+  <div class="row g-4">
+    <!-- LEFT -->
+    <div class="col-lg-8">
+      <!-- Overview / Details -->
+      <section class="card-surface surface-pad ">
+        <h2 class="surface-title">Event Overview</h2>
+        <div class="info-grid">
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <div class="info-label">Venue</div>
+              <div class="info-value">Mirage Hotel</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-calendar-day"></i></div>
+            <div>
+              <div class="info-label">Date</div>
+              <div class="info-value">Saturday, December 6, 2025</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <div class="info-label">Time</div>
+              <div class="info-value">5:00 PM</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon"><i class="fa-solid fa-ticket"></i></div>
+            <div>
+              <div class="info-label">Starting Price</div>
+              <div class="info-value">Ksh 500.00</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Description -->
+        <h3 class="surface-title mb-2">About This Event</h3>
+        <div class="desc">
+          The Fashion Designer of the Year – Kisumu Edition is a regional fashion development event that showcases emerging designers after weeks of mentorship and creative challenges. Designers present their final collections on the runway, and top talents are awarded based on creativity, craftsmanship, and sustainability. The event also features the launch of a new KikoRomeo project supporting local designers.        </div>
+      </section>
+
+      <!-- Organiser -->
+      <section class="card-surface surface-pad section ">
+        <h3 class="surface-title mb-3">Organizer</h3>
+        <div class="d-flex align-items-center">
+          <div class="me-3" style="width:64px;height:64px;border-radius:14px;background:var(--primary-50);display:grid;place-items:center;color:var(--primary);">
+            <i class="fa-solid fa-building fa-lg"></i>
+          </div>
+          <div>
+            <div class="fw-bold text-dark">Tikuza Events</div>
+            <div class="text-muted small mb-1">Professional event organizers</div>
+            <a class="text-decoration-none" href="events"><strong>View other events</strong></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Wide CTA (disabled if ended) -->
+      <section class="section cta-wide ">
+        <div class="d-flex align-items-center gap-3">
+          <i class="fa-solid fa-bolt-lightning fa-2x"></i>
+          <div>
+            <div class="fw-bold" style="font-size:1.25rem;">Don't miss out on this experience</div>
+            <div class="opacity-75">Secure your spot now before tickets sell out.</div>
+          </div>
+        </div>
+                  <a class="btn btn-light fw-bold px-4 py-2" href="pay.html?event_id=44">
+            <i class="fa-solid fa-ticket me-2"></i>Buy Tickets Now
+          </a>
+              </section>
+    </div>
+
+    <!-- RIGHT: Sticky booking -->
+    <div class="col-lg-4">
+      <aside class="book ">
+        <div class="book-head">
+          <div>
+            <div class="opacity-75 small">From</div>
+            <div class="price">Ksh 500.00</div>
+          </div>
+          <div class="text-end">
+            <div class="opacity-75 small">Date &amp; Time</div>
+            <div class="fw-bold">
+              Dec 6 &middot; 5:00 PM            </div>
+          </div>
+        </div>
+        <div class="book-body">
+          <ul class="list-lite mb-3">
+            <li><i class="fa-regular fa-circle-check mt-1"></i> Secure online payment</li>
+            <li><i class="fa-regular fa-circle-check mt-1"></i> Instant e-ticket delivery</li>
+            <li><i class="fa-regular fa-circle-check mt-1"></i> Entry guarantee</li>
+          </ul>
+                      <a class="cta" href="pay.php?event_id=44">
+              <i class="fa-solid fa-lock me-2"></i>Get Tickets
+            </a>
+                    <div class="text-center mt-2"><small class="text-muted">Powered by Tikuza</small></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="py-5">
+  <div class="container">
+    <div class="text-center">
+      <img src="assets/images/Logo.png" alt="Tikuza Logo" height="35" class="mb-3"/>
+      <p class="mb-0">2025 Tikuza. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

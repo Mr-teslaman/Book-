@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - Tickify</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+        
+        .success-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            color: #333;
+            max-width: 500px;
+        }
+        
+        .success-icon {
+            font-size: 80px;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .btn:hover {
+            background: #5a6fd8;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">✓</div>
+        <h1>Payment Successful!</h1>
+        <p>Your bus ticket has been booked successfully.</p>
+        <p>You will receive an email confirmation shortly.</p>
+        <p>Booking reference: <strong id="bookingRef"></strong></p>
+        
+        <button class="btn" onclick="viewTicket()">View Ticket</button>
+        <button class="btn" onclick="goHome()" style="background: #f8f9fa; color: #333; margin-left: 10px;">Back to Home</button>
+    </div>
+
+    <script>
+        // Get payment data from localStorage
+        const paymentData = JSON.parse(localStorage.getItem('paymentSuccess'));
+        
+        if (paymentData) {
+            document.getElementById('bookingRef').textContent = paymentData.reference;
+            
+            // Clear the pending booking data
+            localStorage.removeItem('pendingBooking');
+        } else {
+            document.getElementById('bookingRef').textContent = 'N/A';
+        }
+        
+        function viewTicket() {
+            // Redirect to ticket view page
+            window.location.href = 'index.html'; // Change to actual ticket page if exists
+        }
+        
+        function goHome() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

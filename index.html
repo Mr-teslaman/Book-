@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tickify - Smart Bus Booking</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+     <!-- Font Awesome CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!--Icon on Top Place here-->
+    <link rel="icon" href="Tickify logo.png" type="image/png">
+
+    
+
+</head>
+<body>
+  
+    <!-- Navigation Bar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+    <div class="container">
+        <a class="navbar-brand" onclick="showHome()">
+            <img src="Tickify logo.png" alt="Tickify Logo" height="40">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" onclick="showHome()">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showWallet()">Wallet</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showBookings()">My Bookings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showLoyalty()">Rewards</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showNotifications()">Alerts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" onclick="showSupport()">Support</a>
+                </li>                
+            </ul>
+            <div class="user-actions">
+                <button class="btn btn-outline" onclick="goToHidden()">Login</button>
+                <button class="btn btn-primary"onclick="goToHidden()"><i class="bi bi-plus me-1"></i> Book Ticket</button>
+            </div>
+        </div>
+    </div>
+</nav>
+    <div class="main-content">
+        <!-- Home Page -->
+        <div class="update">
+            <div id="homePage" class="page-content active">
+                <div class="container-fluid">
+                    <div class="row align-items-center">
+                        
+                        <!-- Content on the right -->
+                        <div class="col-lg-6">
+                            <div class="hero">
+                                <h2>Travel Smart, Book Easy</h2>
+                                <p>Your journey begins with 
+                                <span style="color: #125f9a;" >Tickify</span></p>
+                            </div>
+                            
+                            <div class="search-box">
+                                <h3 style="text-align: center; margin-bottom: 1.5rem; color: #667eea;">Find Your Bus</h3>
+                                <form class="search-form">
+                                    <div class="form-group">
+                                        <label>From</label>
+                                        <select id="origin" onchange="updateFare()">
+                                            <option value="">Select Origin</option>
+                                            <option value="Nairobi">Nairobi</option>
+                                            <option value="Mombasa">Mombasa</option>
+                                            <option value="Kisumu">Kisumu</option>
+                                            <option value="Nakuru">Nakuru</option>
+                                            <option value="Eldoret">Eldoret</option>
+                                            <option value="Ukunda">Ukunda</option>
+                                            <option value="Kilifi">Kilifi</option>
+                                            <option value="Hola">Hola </option>
+                                            <option value="Lamu">Lamu </option>
+                                            <option value="Voi">Voi </option>
+                                            <option value="Naivasha">Naivasha</option>
+                                            <option value="Kisii">Kisii</option>
+                                            <option value="Kitale">Kitale </option>
+                                            <option value="Kakamega">Kakamega </option>
+                                            <option value="Bungoma">Bungoma </option>
+                                            <option value="Busia">Busia </option>
+                                            <option value="Siaya">Siaya/Bondo </option>
+                                            <option value="Homa Bay">Homa Bay </option>
+                                            <option value="Migori">Migori </option>
+                                            <option value="Nyeri">Nyeri </option>
+                                            <option value="Meru">Meru </option>
+                                            <option value="Nanyuki">Nanyuki </option>
+                                            <option value="Garissa">Garissa </option>
+                                            <option value="Wajir">Wajir </option>
+                                            <option value="Isiolo">Isiolo </option>
+                                            <option value="Sikasso">Sikasso (Kericho/Bomet region) </option>
+                                            <option value="Nyamira">Nyamira </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>To</label>
+                                        <select id="destination" onchange="updateFare()">
+                                            <option value="">Select Destination</option>
+                                            <option value="Nairobi">Nairobi</option>
+                                            <option value="Mombasa">Mombasa</option>
+                                            <option value="Kisumu">Kisumu</option>
+                                            <option value="Nakuru">Nakuru</option>
+                                            <option value="Eldoret">Eldoret</option>
+                                            <option value="Ukunda">Ukunda</option>
+                                            <option value="Kilifi">Kilifi</option>
+                                            <option value="Lamu">Lamu </option>
+                                            <option value="Voi">Voi </option>
+                                            <option value="Naivasha">Naivasha</option>
+                                            <option value="Kisii">Kisii</option>
+                                            <option value="Kitale">Kitale </option>
+                                            <option value="Kakamega">Kakamega </option>
+                                            <option value="Bungoma">Bungoma </option>
+                                            <option value="Busia">Busia </option>
+                                            <option value="Siaya">Siaya/Bondo </option>
+                                            <option value="Homa Bay">Homa Bay </option>
+                                            <option value="Migori">Migori </option>
+                                            <option value="Nyeri">Nyeri </option>
+                                            <option value="Meru">Meru </option>
+                                            <option value="Nanyuki">Nanyuki </option>
+                                            <option value="Garissa">Garissa </option>
+                                            <option value="Wajir">Wajir </option>
+                                            <option value="Isiolo">Isiolo </option>
+                                            <option value="Sikasso">Sikasso (Kericho/Bomet region) </option>
+                                            <option value="Nyamira">Nyamira </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <input type="date" id="travelDate" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Passengers</label>
+                                        <input type="number" id="passengers" min="1" max="10" value="1">
+                                    </div>
+                                    <button type="button" class="search-btn" onclick="searchBuses()">Search Buses</button>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Image on the left -->
+                        <div class="col-lg-6 mb-4 mb-lg-0">
+                            <img src="https://images.unsplash.com/photo-1600134637836-9d015f520941?q=80&w=387&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
+                                alt="Event attendees enjoying a concert" 
+                                class="img-fluid animate-on-scroll hero-graphic"
+                                style="border-radius: var(--border-radius); pointer-events: none; width: 100%;">
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="available-buses" id="busResults">
+                    <h3>Available Buses</h3>
+                    <div class="bus-cards" id="busCards"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wallet Page -->
+        <div id="walletPage" class="page-content">
+            <div class="modal-content" style="margin: 0 auto; margin-top: 2rem;">
+                <h2>Digital Wallet</h2>
+                <div class="wallet-balance">
+                    <h3>Current Balance</h3>
+                    <p>KSh <span id="walletBalance">0</span></p>
+                </div>
+                <div class="load-funds">
+                    <input type="number" id="loadAmount" placeholder="Enter amount to load" min="1">
+                    <button class="load-btn" onclick="loadFunds()">Load Funds</button>
+                </div>
+                <h3 style="margin: 1.5rem 0 1rem;">Recent Transactions</h3>
+                <div id="transactions"></div>
+            </div>
+        </div>
+
+
+        <!-- Bookings Page -->
+        <div id="bookingsPage" class="page-content">
+            <div class="modal-content" style="margin: 0 auto; margin-top: 2rem;">
+                <h2>My Bookings</h2>
+                <div id="bookingHistory"></div>
+            </div>
+        </div>
+
+        <!-- Loyalty Page -->
+        <div id="loyaltyPage" class="page-content">
+            <div class="modal-content" style="margin: 0 auto; margin-top: 2rem;">
+                <h2>Loyalty Rewards</h2>
+                <div class="loyalty-points">
+                    <h3>Your Points</h3>
+                    <p style="font-size: 3rem; margin: 1rem 0;"><span id="loyaltyPoints">0</span> pts</p>
+                    <p style="font-size: 0.9rem; opacity: 0.9;">Earn 1 point for every KSh 100 spent</p>
+                </div>
+                <h3 style="margin: 1.5rem 0 1rem;">Available Rewards</h3>
+                <div class="history-item">
+                    <strong>10% Discount</strong>
+                    <p>Cost: 500 points</p>
+                    <button class="book-btn" onclick="redeemReward(500, '10% Discount')">Redeem</button>
+                </div>
+                <div class="history-item">
+                    <strong>Free Ride (up to KSh 500)</strong>
+                    <p>Cost: 1000 points</p>
+                    <button class="book-btn" onclick="redeemReward(1000, 'Free Ride')">Redeem</button>
+                </div>
+                <div class="history-item">
+                    <strong>VIP Seating Upgrade</strong>
+                    <p>Cost: 300 points</p>
+                    <button class="book-btn" onclick="redeemReward(300, 'VIP Upgrade')">Redeem</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Page -->
+        <div id="notificationsPage" class="page-content">
+            <div class="modal-content" style="margin: 0 auto; margin-top: 2rem;">
+                <h2>Alerts & Notifications</h2>
+                <div id="notificationsList"></div>
+            </div>
+        </div>
+
+        <!-- Support Page -->
+        <div id="supportPage" class="page-content">
+            <div class="modal-content" style="margin: 0 auto; margin-top: 2rem;">
+                <h2>Customer Support</h2>
+                <form class="search-form" style="margin-top: 2rem;" action="support.php" method="POST">
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Name</label>
+                        <input type="text" id="supportName" required>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Email</label>
+                        <input type="email" id="supportEmail" required>
+                    </div>
+                    <div class="form-group" style="grid-column: 1 / -1;">
+                        <label>Message</label>
+                        <textarea id="supportMessage" rows="5" style="width: 100%; padding: 0.8rem; border: 2px solid #e0e0e0; border-radius: 10px; font-family: inherit;"></textarea>
+                    </div>
+                    <button type="submit" class="search-btn" >Send Message</button>
+                </form>
+                <div style="margin-top: 2rem; padding: 1.5rem; background: #f5f5f5; border-radius: 10px;">
+                    <h3>Contact Information</h3>
+                    <p style="margin-top: 1rem;"><strong>Phone:</strong> +254 769 924 070</p>
+                    <p><strong>Email:</strong> support@tickify.co.ke</p>
+                    <p><strong>Hours:</strong> 24/7 Support Available</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('bookingModal')">&times;</span>
+            <h2>Complete Your Booking</h2>
+            <div id="bookingDetails"></div>
+            <button class="search-btn" onclick="confirmBooking()">Confirm & Pay</button>
+        </div>
+    </div>
+        <!--Fare calculation-->
+    <div id="fare-calculator" class="modal">
+        <div class="modal-content">
+               <div class="section-title">
+                <span class="close-btn" onclick="closeModal ('fare-calculator')">&times;</span><!--This close button is not working(this is the point of closeButton for fare calculation)-->
+                    <h2>Fare Calculator</h2>
+                    <p>Get an estimate of your travel costs before booking</p>
+                </div>
+                <div class="search-box">
+                    <div class="search-form">
+                        <div class="form-group">
+                            <label for="calc-origin">From</label>
+                            <input type="text" id="calc-origin" class="form-control" placeholder="Enter origin" oninput="calculateFare()">
+                        </div>
+                        <div class="form-group">
+                            <label for="calc-destination">To</label>
+                            <input type="text" id="calc-destination" class="form-control" placeholder="Enter destination" oninput="calculateFare()">
+                        </div>
+                        <div class="form-group">
+                            <label for="passengers">Passengers</label>
+                            <input type="number" id="passengers" class="form-control" value="1" min="1" oninput="calculateFare()">
+                        </div>
+                    </div>
+
+                    <div id="fare-result" style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, rgba(74, 107, 255, 0.1), rgba(255, 107, 107, 0.1)); border-radius: 10px; transition: all 0.3s;">
+                        <h3 style="color: var(--primary);">Estimated Fare: <span id="estimated-fare">KSh 0</span></h3>
+                        <p style="margin-top: 10px; color: var(--gray);">Select origin and destination to calculate fare</p>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+    <!-- QR Code Modal -->
+    <div id="qrModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('qrModal')">&times;</span>
+            <div class="qr-container">
+                <h2>Your Boarding Pass</h2>
+                <div class="qr-code">
+                    <svg viewBox="0 0 100 100" style="width: 100%; height: 100%;">
+                        <rect x="10" y="10" width="10" height="10" fill="#000"/>
+                        <rect x="30" y="10" width="10" height="10" fill="#000"/>
+                        <rect x="50" y="10" width="10" height="10" fill="#000"/>
+                        <rect x="70" y="10" width="10" height="10" fill="#000"/>
+                        <rect x="10" y="30" width="10" height="10" fill="#000"/>
+                        <rect x="30" y="30" width="10" height="10" fill="#000"/>
+                        <rect x="70" y="30" width="10" height="10" fill="#000"/>
+                        <rect x="10" y="50" width="10" height="10" fill="#000"/>
+                        <rect x="50" y="50" width="10" height="10" fill="#000"/>
+                        <rect x="70" y="50" width="10" height="10" fill="#000"/>
+                        <rect x="10" y="70" width="10" height="10" fill="#000"/>
+                        <rect x="30" y="70" width="10" height="10" fill="#000"/>
+                        <rect x="50" y="70" width="10" height="10" fill="#000"/>
+                        <rect x="70" y="70" width="10" height="10" fill="#000"/>
+                    </svg>
+                </div>
+                <p style="margin-top: 1rem;"><strong>Booking ID:</strong> <span id="qrBookingId"></span></p>
+                <p style="color: #666; margin-top: 0.5rem;">Show this QR code when boarding</p>
+                <button class="search-btn" onclick="downloadTicket()">Download Ticket</button>
+            </div>
+        </div>
+    </div>
+  
+         <!-- Libraries -->
+        <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+
+       <!--Our Services-->
+         <section class="features">
+        <div class="container">
+            <h2 class="section-title"> Our Features</h2>
+            <div class="features-grid">
+
+                <!-- Route Search -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Route Search & Schedule</h3>
+                    <p>Find available bus routes and schedules based on your origin and destination.</p>
+                    <button class="feature-btn" onclick= "showHome()">Search Routes</button>
+                </div>
+                
+                <!-- Fare Calculator -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Fare Calculator</h3>
+                    <p>Get estimated fares for your journey before booking.</p>
+                    <button class="feature-btn" onclick="showHome()">Calculate Fare</button>
+                </div>
+                
+                <!-- Digital Wallet -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>Digital Wallet</h3>
+                    <p>Load funds, check balance, and manage your account.</p>
+                    <button class="feature-btn" onclick="showWallet()">Manage Wallet</button>
+                </div>
+                
+                <!-- Ticket Booking -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3>Ticket Booking</h3>
+                    <p>Book single rides, return trips, or passes for regular travel.</p>
+                    <button class="feature-btn" onclick="showBookings()">Book Tickets</button>
+                </div>
+                
+                <!-- QR Code -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3>QR Code Boarding</h3>
+                    <p>Use QR codes or NFC for quick and easy boarding.</p>
+                    <button class="feature-btn" onclick="openModal('qrModal')">View QR Code</button>
+                </div>
+                
+                <!-- Booking History -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3>Booking History</h3>
+                    <p>View past trips, payments, and download receipts.</p>
+                    <button class="feature-btn" onclick="showBookings()">View History</button>
+                </div>
+                
+                <!-- Multi-modal -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3>Multi-modal Integration</h3>
+                    <p>Plan journeys combining bus, train, and ferry services.</p>
+                    <button class="feature-btn" onclick="showHome()">Plan Journey</button>
+                </div>
+                
+                <!-- Alerts -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Alerts & Notifications</h3>
+                    <p>Get real-time updates on arrivals, delays, and reminders.</p>
+                    <button class="feature-btn" onclick="showNotifications()">Manage Alerts</button>
+                </div>
+                
+                <!-- Loyalty -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>Loyalty Rewards</h3>
+                    <p>Earn points and get discounts as a frequent traveler.</p>
+                    <button class="feature-btn" onclick="showLoyalty()">View Rewards</button>
+                </div>
+                
+                <!-- Support -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Customer Support</h3>
+                    <p>Get help, provide feedback, or report issues.</p>
+                    <button class="feature-btn" onclick="showSupport()">Contact Support</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <!-- Features Section -->
+    <section class="py-5 bg-light">
+        <div class="container py-4">
+            <h2 class="text-center mb-5 fw-bold">Why Choose Tickify?</h2>
+             <div class="row g-4 mb-5">
+                <!-- Feature 1 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card p-4 h-100 text-center border-0 rounded-3 shadow-sm bg-white">
+                        <div class="icon-wrapper bg-primary-light rounded-circle p-3 mb-3 mx-auto">
+                            <i class="fas fa-ticket-alt fa-2x text-primary"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Easy Ticketing Booking</h3>
+                        <p class="text-muted mb-0">Book your bus tickets in under 60 seconds with our streamlined process.</p></p>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card p-4 h-100 text-center border-0 rounded-3 shadow-sm bg-white">
+                        <div class="icon-wrapper bg-success-light rounded-circle p-3 mb-3 mx-auto">
+                            <i class="fas fa-mobile-alt fa-2x text-success"></i>
+                        </div>
+                        <h3 class="h4 mb-3">100% Secure Payments</h3>
+                        <p class="text-muted mb-0">Your payment information is protected with bank-level security.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card p-4 h-100 text-center border-0 rounded-3 shadow-sm bg-white">
+                        <div class="icon-wrapper bg-warning-light rounded-circle p-3 mb-3 mx-auto">
+                            <i class="fas fa-qrcode fa-2x text-warning"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Digital Tickets</h3>
+                        <p class="text-muted mb-0">WhatsApp, SMS, or Email delivery - no paper waste.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card p-4 h-100 text-center border-0 rounded-3 shadow-sm bg-white">
+                        <div class="icon-wrapper bg-info-light rounded-circle p-3 mb-3 mx-auto">
+                            <i class="fas fa-percent fa-2x text-info"></i>
+
+                        </div>
+                        <h3 class="h4 mb-3">Best Price Guarantee</h3>
+                        <p class="text-muted mb-0">We guarantee the lowest prices for all bus routes across the country.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Payment Methods Section -->
+            <div class="row justify-content-center mt-4">
+                <div class="col-lg-8 text-center">
+                    <h3 class="fw-bold mb-3">We Support Secure and Flexible Payments</h3>
+                    <p class="lead mb-4" style="max-width: 700px; margin: 0 auto;">
+                        At Tickify, we make it easy for you to pay the way you prefer. Whether it's mobile money, bank cards, or online transfers, our platform is built to handle secure, fast, and reliable transactions.
+                    </p>
+                    <div class="my-4">
+                        <img src="assets/images/payment-logos.png" 
+                             alt="Payment methods supported by Tickify – M-Pesa, Airtel Money, Visa, Mastercard, Paystack" 
+                             class="img-fluid payment-methods"
+                             style="max-width: 100%; width: 650px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="cta" class="cta-section">
+        <div class="container">
+            <h2>Ready to Book Your Travel?</h2>
+            <p>Join millions of travelers who trust Tickify for their bus booking needs. Experience the difference today!</p>
+            <button class="cta-btn" onclick="showHome()">Book My Bus Now</button>
+        </div>
+    </section>
+
+        <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How Tickify Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Search</h3>
+                    <p>Enter your departure and destination <br> cities along with your travel date.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Select</h3>
+                    <p>Choose from available buses, compare prices,<br> and select your preferred option.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Book</h3>
+                    <p>Enter passenger details and proceed <br>to secure payment.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Travel</h3>
+                    <p>Receive e-ticket and boarding details. <br>Enjoy your journey!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        How far in advance can I book a bus ticket?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can book bus tickets up to 90 days in advance through Tickify. This allows you to plan your travel well ahead of time and secure the best seats.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Can I cancel or modify my booking?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, you can cancel or modify your booking through our website or mobile app. Cancellation policies vary by bus operator, so please check the terms before booking.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        What payment methods do you accept?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept all major credit/debit cards, net banking, UPI, and popular digital wallets. All payments are processed through secure gateways.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        How will I receive my ticket?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>After successful payment, you will receive an e-ticket via email and SMS. You can also access it through your Tickify account.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        Are there any hidden charges?
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>No, we believe in transparent pricing. The price you see during booking is the final amount you pay, with no hidden charges.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Tickify</h3>
+                    <p>Your reliable partner for comfortable and affordable bus travel.</p>
+                    <div class="social-links">
+                       <a href="https://www.facebook.com/profile.php?id=61577844734551" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+
+                        <a href="https://x.com/MrTeslaman?t=iogpmlVMV277mtulX4DeDw&s=09" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/teslaman788?igsh=YzljYTk1ODg3Zg==" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/mr-teslaman-863465388?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="social-icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.youtube.com/@MrTeslaman-u7e" class="social-icon youtube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a onclick="showHome()">Home</a></li>
+                        <li><a onclick="showWallet()">Wallet</a></li>
+                        <li><a onclick="showBookings()">My Booking</a></li>
+                        <li><a onclick="showLoyalty()">Rewards</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a onclick="showAbout()" >About Us</a></li>
+                        <li><a onclick="showContact()">Contact Us</a></li>
+                        <li><a onclick="showPrivacy()">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><a onclick="showSection('terms')"><i class="fas fa-phone"></i>  +254 7699 240 70</a></li>
+                        <li><a onclick="showSection('privacy')"><i class="fas fa-envelope"></i>  tickify.co.ke</a></li>
+                        <li><a onclick="showSection('disclaimer')"><i class="fas fa-map-marker-alt"></i>    Booking Office</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Tickify. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <div class="float-btn whatsapp-btn" onclick="openWhatsApp()">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 006.597 1.959h.006c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span class="chat-tooltip">Chat with via WhatsApp</span>
+        </div>
+        <div class="float-btn sms-btn" onclick="openSMS()">
+            <svg viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+            <span class="chat-tooltip">Chat with via SMS</span>
+        </div>
+    </div>
+    <!-- Bootstrap JS (ensures navbar toggler icon works with .navbar-light) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="javascript.js"></script>
+    <!-- Add this in the <head> section of your main page -->
+<script src="https://js.paystack.co/v1/inline.js"></script>
+
+</body>
+</html>
